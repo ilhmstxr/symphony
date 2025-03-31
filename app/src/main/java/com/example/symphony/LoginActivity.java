@@ -1,5 +1,8 @@
 package com.example.symphony;
 
+import android.app.Dialog;
+import android.view.Window;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -60,14 +63,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-//    login user
     private void loginUser() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Masukkan Email dan Password!", Toast.LENGTH_SHORT).show();
+            showErrorDialog("Masukkan Email dan Password!");
         } else {
             boolean success = dbManager.loginUser(email, password);
             if (success) {
@@ -75,12 +76,31 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(this, DashboardActivity.class));
                 finish();
             } else {
-                Toast.makeText(this, "Email atau Password salah!", Toast.LENGTH_SHORT).show();
+                showErrorDialog("Your username or password is incorrect");
             }
         }
     }
 
-    // visibility password
+    // Fungsi untuk menampilkan dialog error
+    private void showErrorDialog(String errorMessage) {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_error_login);
+        dialog.setCancelable(true);
+
+        // Ambil referensi dari komponen dalam XML
+        Button btnRelogin = dialog.findViewById(R.id.btn_relogin);
+        btnRelogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss(); // Tutup dialog
+            }
+        });
+
+        dialog.show(); // Tampilkan dialog
+    }
+
+    // Fungsi untuk menampilkan/menghilangkan password
     private void togglePasswordVisibility() {
         if (isPasswordVisible) {
             etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
