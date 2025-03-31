@@ -49,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:hint="JohnDoe@gmail.com"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -74,7 +75,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:hint="********"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -99,7 +101,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:hint="********"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -123,8 +126,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:hint="YYYY/MM/DD"
-                android:inputType="date" />
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <Button
